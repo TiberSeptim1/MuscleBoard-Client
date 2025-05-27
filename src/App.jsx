@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SupaAuth from './sections/SupaAuth'
-
+import { Analytics } from "@vercel/analytics/next"
 import {Routes, Route} from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
 import CreateSub from './sections/CreateSub'
@@ -29,6 +29,7 @@ const App = () => {
       <Route path='/members/details/:id' element={<ProtectedRoute><Details/></ProtectedRoute>}/>
       <Route path='/members/edit/:id' element={<ProtectedRoute><Edit/></ProtectedRoute>}/>
     </Routes>
+    <Analytics/>
     </main>
   )
 }
