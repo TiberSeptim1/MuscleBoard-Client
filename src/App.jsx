@@ -1,7 +1,7 @@
 import React from 'react'
 
 import SupaAuth from './sections/SupaAuth'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react";
 import {Routes, Route} from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoutes.jsx'
 import CreateSub from './sections/CreateSub'
