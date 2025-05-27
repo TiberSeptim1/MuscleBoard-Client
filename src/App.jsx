@@ -18,8 +18,8 @@ const App = () => {
         <SupaAuth/>
         }/>
       <Route path='/' element={<ProtectedRoute>
-          <div className='bg-gray-900 min-h-screen w-full p-6'>
-          <div className='max-w-6xl mx-auto bg-gray-800 shadow-md rounded-lg p-8'>
+          <div className='bg-gray-900 min-h-screen px-2 py-4'>
+          <div className='w-full sm:w-11/12 md:w-3/4 lg:w-2/3 mx-auto bg-gray-800 shadow-md rounded-lg md:p-8 p-1'>
           <Dashboard/>
           </div>
           </div>

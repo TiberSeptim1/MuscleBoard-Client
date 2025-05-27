@@ -1,4 +1,5 @@
 import supabase from "../supabaseClient";
+import { Link } from "react-router-dom";
 
 const Top = ({ searchTerm, setSearchTerm }) => {
   const logout = () => {
@@ -9,6 +10,7 @@ const Top = ({ searchTerm, setSearchTerm }) => {
   };
 
   return (
+    <div>
     <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 px-6 py-6 mb-10">
       <div className="relative w-full md:w-96">
         <img
@@ -31,6 +33,19 @@ const Top = ({ searchTerm, setSearchTerm }) => {
         Logout
       </button>
     </div>
+
+<div className='flex justify-center items-center font-poppins'>
+<div className="flex flex-col gap-3 mb-3 md:gap-4 md:mb-6 md:flex-row text-sm md:text-base w-fit">
+  <Link to='/members/create'>
+<button className="bg-blue-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex flex-auto gap-3 items-center justify-center">
+    <img src="/add.svg" alt="add" className='w-6 h-6'/>
+  Add New Member
+</button>
+  </Link>
+</div>
+</div>
+
+</div>
   );
 };
 
