@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SkeletalLoaderTable from "../components/SkeletalLoaderDetails";
+import SkeletalLoaderTable from "../components/SkeletalLoaderTable";
 
 
 const Table = ({ members, loading, searchTerm }) => {
@@ -15,7 +15,7 @@ const Table = ({ members, loading, searchTerm }) => {
   return (
     <div className="bg-white rounded-lg shadow overflow-x-auto text-sm w-full md:text-base">
       {loading ? (
-  <table className="w-full table-auto border-collapse">
+  <table className="w-full table-auto border-collapse ">
     <thead className="bg-gray-300 font-semibold text-gray-700 sticky">
       <tr>
         <th className="text-left px-6 py-4">Name</th>
