@@ -42,7 +42,7 @@ const Dashboard = () => {
   return (
     <>
       <Top searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Table members={members} loading={loading} searchTerm={searchTerm} />
+      <Table members={members} loading={loading} searchTerm={searchTerm}/>
     </>
   );
 };

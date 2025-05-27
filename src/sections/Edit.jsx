@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import Spinner from '../components/Spinner';
 import supabase from '../supabaseClient';
 import { BASE_URL } from '../components/AppUrl';
-
+import MemberformSkeleton from '../components/MemberformSkeleton';
+import BackArrow from '../components/BackArrow';
 
 const Edit = () => {
     const {id}=useParams();
@@ -114,13 +114,15 @@ const Edit = () => {
   return (
 
     
-    <div className='bg-gray-900 min-h-screen w-full p-6'>
-    <div className="max-w-3xl mx-auto bg-gray-800 shadow-md rounded-lg p-8 flex items-center justify-center px-4">
-      {loading? <Spinner/>:'' }
-        <div className="bg-transparent shadow-lg rounded-lg max-w-md w-full p-8">
+    <div className='bg-gray-900 min-h-screen w-full md:p-6 p-3'>
+      
+    <div className="max-w-3xl mx-auto bg-gray-800 shadow-md rounded-lg md:p-8 p-2 flex items-center justify-center px-4">
+      
+      {loading? (<MemberformSkeleton/>):(
+        <div className="bg-transparent shadow-lg rounded-lg max-w-md w-full md:p-8 p-0">
     <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Edit or Renew Member</h1>
     <form className="space-y-6" id="memberForm" onSubmit={handleSubmit}>
-      
+      <div className='p-0 '><BackArrow></BackArrow></div>
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-white">Name</label>
         <input
@@ -216,7 +218,7 @@ const Edit = () => {
         Save
       </button>
     </form>
-  </div>
+  </div>) }
     </div>
     </div>
   )

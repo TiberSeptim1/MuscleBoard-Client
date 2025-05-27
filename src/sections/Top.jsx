@@ -1,6 +1,7 @@
 import supabase from "../supabaseClient";
 import { Link } from "react-router-dom";
 
+
 const Top = ({ searchTerm, setSearchTerm }) => {
   const logout = () => {
     const confirmation = confirm("Are you sure you want to log out?");
@@ -37,7 +38,7 @@ const Top = ({ searchTerm, setSearchTerm }) => {
 <div className='flex justify-center items-center font-poppins'>
 <div className="flex flex-col gap-3 mb-3 md:gap-4 md:mb-6 md:flex-row text-sm md:text-base w-fit">
   <Link to='/members/create'>
-<button className="bg-blue-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex flex-auto gap-3 items-center justify-center">
+<button className="bg-blue-700 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold hover:bg-blue-600 transition flex flex-auto gap-3 items-center justify-center hover:scale-105 hover:border-2 border-blue-500">
     <img src="/add.svg" alt="add" className='w-6 h-6'/>
   Add New Member
 </button>

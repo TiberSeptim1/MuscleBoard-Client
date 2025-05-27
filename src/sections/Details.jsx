@@ -5,6 +5,7 @@ import supabase from '../supabaseClient';
 import { Link } from 'react-router-dom';
 import SkeletalLoaderDetails from '../components/SkeletalLoaderDetails';
 import { BASE_URL } from '../components/AppUrl';
+import BackArrow from '../components/BackArrow.jsx';
 
 
 const Details = () => {
@@ -142,13 +143,15 @@ const Details = () => {
   
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 font-poppins p-6">
+    <div className="w-full min-h-screen bg-gradient-to-r from-blue-100 to-blue-200 font-poppins md:p-6 p-3 ">
     {loading ? (
         <SkeletalLoaderDetails/>
       ) : (
         <div className="max-w-4xl mx-auto space-y-10">
+          <BackArrow></BackArrow>
           {/* Top Card */}
-          <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-md hover:shadow-xl transition-all">
+          
             <div className="space-y-2">
               <h1 className="text-3xl font-bold text-gray-900">{member.name}</h1>
               <div className="text-gray-700 text-sm space-y-1 mt-2">
@@ -160,7 +163,6 @@ const Details = () => {
                 <p><span className="font-bold">Months:</span> {member.frequency}</p>
               </div>
             </div>
-
             <div className="flex gap-4">
 
               <button
@@ -172,7 +174,7 @@ const Details = () => {
               </button>
               <button
                 onClick={handleDeleteSubscription}
-                className="bg-red-500 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-semibold shadow transition-all"
+                className="bg-red-500 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-semibold shadow transition-all "
               >
                 Delete
               </button>
@@ -181,7 +183,7 @@ const Details = () => {
           {/* History Section */}
           <section>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Membership History</h2>
-            <div className='bg-red-500 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-semibold shadow transition-all w-fit mb-5' onClick={handleDeleteAllHistory}>Delete All History</div>
+            <div className='bg-red-500 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg font-semibold shadow transition-all w-fit mb-5 hover:scale-105' onClick={handleDeleteAllHistory}>Delete All History</div>
             <div className="space-y-4">
                 {member.history && member.history.length > 0 ? (
                   member.history.map(({frequency, endDate, status, startDate, feesPaid, price, _id }, i) => (
