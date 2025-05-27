@@ -1,21 +1,72 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import supabase from '../supabaseClient';
 
-const CreateSub = () => {
+
+const Edit = () => {
+    const {id}=useParams();
+    const [member, setMember] = useState({})
+    useEffect(()=>{
+        setLoading(true);
+        const fetchMembers = async () => {
+          setLoading(true);
+      
+          const { data: sessionData } = await supabase.auth.getSession();
+          const token = sessionData?.session?.access_token;
+      
+          if (!token) {
+            console.error('No token found');
+            setLoading(false);
+            return;
+          }
+      
+          try {
+            const response = await axios.get(`http://localhost:5500/api/v1/subscriptions/history/${id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+      
+            setMember(response.data.data);
+          } catch (error) {
+            console.error('Error fetching member:', error.response?.data || error.message);
+          } finally {
+            setLoading(false);
+          }
+        };
+      
+        fetchMembers();
+        
+      },[id]);
+
+      console.log(member.name)
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
+
+  
   const [formData, setFormData]=useState({
-    name:'',
-    price:'',
-    frequency:'',
-    startDate:'',
-    feesPaid:'',
-    contact:'',
+          name:'',
+          price:'',
+          frequency:'',
+          startDate:'',
+          feesPaid:'',
+          contact:'',
   })
 
+  useEffect(()=>{
+    setFormData({
+        name:member.name||'',
+        price:member.price||'',
+        frequency:member.frequency||'',
+        startDate:member.startDate||'',
+        feesPaid:member.feesPaid||'',
+        contact:member.contact||'',
+        
+    }
+    )
+  },[member]);
   const handleChange = (e)=>{
     const {name , value} = e.target;
     setFormData((prev)=>({
@@ -31,6 +82,7 @@ const CreateSub = () => {
     const {data:sessionData} = await supabase.auth.getSession();
     const token = sessionData?.session?.access_token;
     const userId = sessionData?.session?.user?.id;
+    console.log(userId)
 
     const data = {...formData,
       "userId":userId,
@@ -42,7 +94,7 @@ const CreateSub = () => {
       return;
     }
     axios
-    .post('http://localhost:5500/api/v1/subscriptions/', data,{
+    .put(`http://localhost:5500/api/v1/subscriptions/${id}`, data,{
       headers:{
         Authorization: `Bearer ${token}`,
         'Content-Type':'application/json',
@@ -50,7 +102,7 @@ const CreateSub = () => {
     })
     .then (()=>{
       setLoading(false);
-      navigate('/')
+      navigate(`/members/details/${member._id}`)
     })
     .catch((error)=>{
       setLoading(false);
@@ -65,7 +117,7 @@ const CreateSub = () => {
     <div className="max-w-3xl mx-auto bg-gray-800 shadow-md rounded-lg p-8 flex items-center justify-center px-4">
       {loading? <Spinner/>:'' }
         <div className="bg-transparent shadow-lg rounded-lg max-w-md w-full p-8">
-    <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Add New Member</h1>
+    <h1 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Edit or Renew Member</h1>
     <form className="space-y-6" id="memberForm" onSubmit={handleSubmit}>
       
       <div>
@@ -136,7 +188,7 @@ const CreateSub = () => {
           type="date"
           id="startDate"
           name="startDate"
-          value={formData.startDate}
+          value={formData.startDate.split('T')[0]}
           onChange={handleChange}
           required
           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:ring-indigo-500"
@@ -160,7 +212,7 @@ const CreateSub = () => {
         type="submit"
         className="w-full bg-indigo-600 text-white py-2 rounded-md text-lg font-medium hover:bg-indigo-700 transition"
       >
-        Create Member
+        Save
       </button>
     </form>
   </div>
@@ -169,4 +221,4 @@ const CreateSub = () => {
   )
 }
 
-export default CreateSub
+export default Edit

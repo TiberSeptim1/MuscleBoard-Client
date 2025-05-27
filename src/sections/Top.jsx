@@ -14,7 +14,7 @@ const Top = () => {
     <>
     <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 px-6 py-6 mb-10">
       
-      {/* Search Input */}
+
       <div className="relative w-full md:w-96">
         
         <img
@@ -31,7 +31,6 @@ const Top = () => {
         />
       </div>
 
-      {/* Logout Text */}
       <button
         className="bg-slate-700 px-2 py-2 border border-gray-800 rounded-lg font-poppins text-red-600 hover:text-red-700 font-medium transition-transform hover:scale-110 select-none" onClick={logout}
       >

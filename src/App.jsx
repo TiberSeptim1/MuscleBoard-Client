@@ -8,6 +8,7 @@ import CreateSub from './sections/CreateSub'
 import Details from './sections/Details'
 import Top from './sections/Top.jsx'
 import Table from './sections/Table.jsx'
+import Edit from './sections/Edit.jsx'
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         </ProtectedRoute>}/>
       <Route path='/members/create' element={<ProtectedRoute><CreateSub/></ProtectedRoute>}/>
       <Route path='/members/details/:id' element={<ProtectedRoute><Details/></ProtectedRoute>}/>
+      <Route path='/members/edit/:id' element={<ProtectedRoute><Edit/></ProtectedRoute>}/>
     </Routes>
     </main>
   )
