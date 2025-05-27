@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import supabase from '../supabaseClient';
+import { BASE_URL } from '../components/AppUrl';
 
 
 const Edit = () => {
@@ -23,7 +24,7 @@ const Edit = () => {
           }
       
           try {
-            const response = await axios.get(`http://localhost:5500/api/v1/subscriptions/history/${id}`, {
+            const response = await axios.get(`${BASE_URL}/api/v1/subscriptions/history/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -94,7 +95,7 @@ const Edit = () => {
       return;
     }
     axios
-    .put(`http://localhost:5500/api/v1/subscriptions/${id}`, data,{
+    .put(`${BASE_URL}/api/v1/subscriptions/${id}`, data,{
       headers:{
         Authorization: `Bearer ${token}`,
         'Content-Type':'application/json',

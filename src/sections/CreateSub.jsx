@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import supabase from '../supabaseClient';
+import { BASE_URL } from '../components/AppUrl';
 
 const CreateSub = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const CreateSub = () => {
       return;
     }
     axios
-    .post('http://localhost:5500/api/v1/subscriptions/', data,{
+    .post(`${BASE_URL}/api/v1/subscriptions/`, data,{
       headers:{
         Authorization: `Bearer ${token}`,
         'Content-Type':'application/json',

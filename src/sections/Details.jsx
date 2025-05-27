@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import Spinner from '../components/Spinner';
 import supabase from '../supabaseClient';
 import { Link } from 'react-router-dom';
 import SkeletalLoaderDetails from '../components/SkeletalLoaderDetails';
+import { BASE_URL } from '../components/AppUrl';
 
 
 const Details = () => {
@@ -32,7 +32,7 @@ const Details = () => {
       }
   
       try {
-        const response = await axios.get(`http://localhost:5500/api/v1/subscriptions/history/${id}`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/subscriptions/history/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -58,7 +58,7 @@ const Details = () => {
 
     setLoading(true);
     axios
-      .delete(`http://localhost:5500/api/v1/subscriptions/${id}`, {
+      .delete(`${BASE_URL}/api/v1/subscriptions/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -91,7 +91,7 @@ const Details = () => {
         return;
       }
   
-      await axios.delete(`http://localhost:5500/api/v1/subscriptions/history/${historyId}`, {
+      await axios.delete(`${BASE_URL}/api/v1/subscriptions/history/${historyId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -123,7 +123,7 @@ const Details = () => {
         return;
       }
   
-      await axios.delete(`http://localhost:5500/api/v1/subscriptions/history/subscription/${id}`, {
+      await axios.delete(`${BASE_URL}/api/v1/subscriptions/history/subscription/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

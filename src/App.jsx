@@ -15,7 +15,9 @@ const App = () => {
   return (
     <main className='min-h-screen w-full mx-auto font-poppins'>
     <Routes>
-      <Route path='/login' element={<SupaAuth/>}/>
+      <Route path='/login' element={
+        <SupaAuth/>
+        }/>
       <Route path='/' element={<ProtectedRoute>
           <div className='bg-gray-900 min-h-screen w-full p-6'>
           <div className='max-w-6xl mx-auto bg-gray-800 shadow-md rounded-lg p-8'>

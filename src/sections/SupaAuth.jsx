@@ -4,6 +4,7 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import supabase from '../supabaseClient.js'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../components/useAuth.js'
+import { FRONTEND_URL } from '../components/AppUrl.js'
 
 
 
@@ -16,7 +17,7 @@ const SupaAuth = () => {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           providers={['google']}
-          redirectTo={'http://localhost:5173'}
+          redirectTo={`${FRONTEND_URL}`}
         />
       </div>
   )

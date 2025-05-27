@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Spinner from '../components/Spinner';
 import supabase from '../supabaseClient';
 import { Link } from 'react-router-dom';
 import SkeletalLoaderTable from '../components/SkeletalLoaderTable';
+import { BASE_URL } from '../components/AppUrl';
 
 
 const Table = () => {
@@ -23,7 +23,6 @@ useEffect(()=>{
 
     const { data: sessionData } = await supabase.auth.getSession();
     const token = sessionData?.session?.access_token;
-
     if (!token) {
       console.error('No token found');
       setLoading(false);
@@ -31,7 +30,7 @@ useEffect(()=>{
     }
 
     try {
-      const response = await axios.get('http://localhost:5500/api/v1/subscriptions/', {
+      const response = await axios.get(`${BASE_URL}/api/v1/subscriptions/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
